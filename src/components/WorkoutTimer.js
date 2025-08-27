@@ -108,7 +108,7 @@ const WorkoutTimer = () => {
             if (currentSet < totalSets) {
               // More sets remaining - rest between sets
               setCurrentSet(currentSet + 1);
-              setCurrentRep(1);
+              setcurrentrep(0);
               setIsResting(true);
               setRestTimer(getRestBetweenReps());
               setPhase('resting');
@@ -116,8 +116,8 @@ const WorkoutTimer = () => {
               // Exercise completed
               if (currentExerciseIndex < totalExercises - 1) {
                 setCurrentExerciseIndex(currentExerciseIndex + 1);
-                setCurrentSet(1);
-                setCurrentRep(1);
+                setcurrentset(0);
+                setcurrentrep(0);
                 
                 // Rest between exercises
                 setIsResting(true);
@@ -197,11 +197,9 @@ const WorkoutTimer = () => {
     
     // Announce exercise name
     speak(currentExercise.name);
-    
+    //speak('התחלה');
     // After 1 second, say "GO" and set phase to exercising
     setTimeout(() => {
-      speak('התחלה');
-      
       
       // Start the actual exercise after the "התחלה" voice cue completes
       setTimeout(() => {
@@ -209,8 +207,8 @@ const WorkoutTimer = () => {
 	  setIsRunning(true);
         setIsPaused(false);
         setExerciseStarted(true); // Now the exercise has actually started
-      }, 1000); // 1 second delay after "התחלה" to let it finish speaking
-    }, 1000);
+      }, 3000); // 1 second delay after "התחלה" to let it finish speaking
+    }, 2);
   };
 
   const togglePauseResume = () => {
@@ -233,8 +231,8 @@ const WorkoutTimer = () => {
     setIsRunning(false);
     setIsPaused(false);
     setCurrentExerciseIndex(0);
-    setCurrentSet(1);
-    setCurrentRep(1);
+    setCurrentSet(0);
+    setCurrentRep(0);
     setWorkoutTime(0);
     setRestTimer(0);
     setIsResting(false);
@@ -246,8 +244,8 @@ const WorkoutTimer = () => {
   const skipToNextExercise = () => {
     if (currentExerciseIndex < totalExercises - 1) {
       setCurrentExerciseIndex(currentExerciseIndex + 1);
-      setCurrentSet(1);
-      setCurrentRep(1);
+      setcurrentset(0);
+      setcurrentrep(0);
       setIsResting(false);
       setRestTimer(0);
       
